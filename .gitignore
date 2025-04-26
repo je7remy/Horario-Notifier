@@ -11,6 +11,63 @@ client_secret*.json
 credentials*.json
 *oauth*.json
 token*.json
+token.pickle
+token.pickle.backup
+
+# Python virtual environment
+venv/
+env/
+.venv/
+.python-version
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Log files
+*.log
+logs/
+
+# Other common secrets and credentials
+*api_key*
+*apikey*
+*secret*
+*credential*
+*password*
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.der
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.example
+
+# Google OAuth credentials
+client_secret*.json
+credentials*.json
+*oauth*.json
+token*.json
 
 # Python virtual environment
 venv/
