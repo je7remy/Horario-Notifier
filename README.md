@@ -220,9 +220,11 @@ Jeremy José de la Cruz Pérez
 📧 [LinkedIn](https://www.linkedin.com/in/jeremy-jos%C3%A9-de-la-cruz-p%C3%A9rez-0a49b9237/)
 🎓 Estudiante de Lic. en Informática
 
+---
+
 ## 📜 Licencia
 
-Este proyecto está bajo licencia [MIT](https://github.com/je7remy/linuxknowledge/blob/main/LICENSE).  
+Este proyecto está bajo licencia [MIT](https://github.com/je7remy/Horario-Notifier/blob/main/LICENSE).  
 *"El conocimiento es libre, compártelo responsablemente"* - je7remy
 
 ---
