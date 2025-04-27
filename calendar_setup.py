@@ -22,7 +22,7 @@ def get_calendar_service(token_path: str = 'token.pickle',
     # 2) Si no hay credenciales válidas, pedir login
     if not creds or not creds.valid:
         flow = InstalledAppFlow.from_client_secrets_file(creds_path, SCOPES)
-        creds = flow.run_local_server(port=0)
+        creds = flow.run_local_server(port=49918)
         # Guardar para la próxima vez
         with open(token_path, 'wb') as token_file:
             pickle.dump(creds, token_file)

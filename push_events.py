@@ -1,36 +1,31 @@
-from datetime import datetime
-from calendar_setup import get_calendar_service
+import time  # 👈 Importar esto arriba
+from datetime import datetime, timedelta
 from horario_god import HORARIO_GOD
+from calendar_setup import get_calendar_service
 
-def crear_evento(service, fecha: str, actividad: dict):
-    """
-    Inserta un evento en Google Calendar:
-    - fecha: YYYY-MM-DD
-    - actividad: diccionario con start, end, title, mission
-    """
-    start_dt = datetime.fromisoformat(f"{fecha}T{actividad['start']}:00")
-    end_dt   = datetime.fromisoformat(f"{fecha}T{actividad['end']}:00")
+DIAS_A_CREAR = 30
 
+def crear_evento(service, fecha, actividad):
+    start_time = f"{fecha}T{actividad['start']}:00"
+    end_time = f"{fecha}T{actividad['end']}:00"
     event_body = {
-        'summary': f"{actividad['title']} | {actividad['mission']}",
-        'start': {'dateTime': start_dt.isoformat(), 'timeZone': 'America/Santo_Domingo'},
-        'end':   {'dateTime': end_dt.isoformat(),   'timeZone': 'America/Santo_Domingo'},
-        'reminders': {
-            'useDefault': False,
-            'overrides': [
-                {'method': 'popup', 'minutes': 10},
-            ],
-        },
+        'summary': actividad['title'],
+        'description': actividad['mission'],
+        'start': {'dateTime': start_time, 'timeZone': 'America/Santo_Domingo'},
+        'end': {'dateTime': end_time, 'timeZone': 'America/Santo_Domingo'},
+        'reminders': {'useDefault': False, 'overrides': [{'method': 'popup', 'minutes': 10}]}
     }
-
     created = service.events().insert(calendarId='primary', body=event_body).execute()
-    print(f"✅ Creado: {created['summary']} ({actividad['start']}-{actividad['end']})")
+    print(f"✅ Creado ({fecha}): {actividad['title']} | {actividad['mission']} ({actividad['start']}-{actividad['end']})")
+    time.sleep(1)  # 👈 Espera 1 segundo antes de crear el siguiente evento
 
 def main():
-    fecha = datetime.now().date().isoformat()
     service = get_calendar_service()
-    for act in HORARIO_GOD:
-        crear_evento(service, fecha, act)
+    hoy = datetime.now()
+    for i in range(DIAS_A_CREAR):
+        fecha = (hoy + timedelta(days=i)).strftime('%Y-%m-%d')
+        for actividad in HORARIO_GOD:
+            crear_evento(service, fecha, actividad)
 
 if __name__ == '__main__':
     main()
